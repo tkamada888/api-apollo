@@ -1,18 +1,12 @@
 const { ApolloServer } = require('apollo-server');
-const userSchema = require('./api/user/schema/user.graphql')
-
-const users = [
-    {
-        nome: 'Reginaldo',
-        ativo: true
-    },
-    {
-        nome: 'Augusta',
-        ativo: false
-    }
-]
+const userSchema = require('./user/schema/user.graphql')
+const userResolvers = require('./user/resolvers/userResolvers')
 
 const typeDefs = [userSchema];
-const resolvers = { };
+const resolvers = [userResolvers];
 
 const server = new ApolloServer({ typeDefs, resolvers });
+
+server.listen().then(({url}) =>{
+    console.log(`Servidor rodando na porta ${url}`)
+})

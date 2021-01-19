@@ -6,6 +6,11 @@ type User {
     ativo: Boolean!
     email: String
     }
+
+    type Query {
+        users: [User]
+        primeiroUser: User
+    }
 `
 
 module.exports = userSchema
